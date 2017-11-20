@@ -28,6 +28,9 @@ cdef class OctreePointCloudSearch(OctreePointCloud):
         self.me2 = NULL
         self.me = NULL
 
+    def enable_dynamic_depth(self, int max_obj_per_leaf):
+         (<pcloct.OctreePointCloud_t*>self.me).enableDynamicDepth(max_obj_per_leaf)
+
     # nearestKSearch
     ###
     def nearest_k_search_for_cloud(self, PointCloud pc not None, int k=1):
@@ -198,6 +201,7 @@ cdef class OctreePointCloudSearch(OctreePointCloud):
         """
         Add points from input point cloud to octree.
         """
+        print("Hello Khanh")
         self.me2.addPointsFromInputCloud()
 
     def is_voxel_occupied_at_point(self, point):
@@ -244,6 +248,9 @@ cdef class OctreePointCloudSearch_PointXYZI(OctreePointCloud_PointXYZI):
         self.me2 = NULL
         self.me = NULL
 
+    def enable_dynamic_depth(self, int max_obj_per_leaf):
+         (<pcloct.OctreePointCloud_PointXYZI_t*>self.me).enableDynamicDepth(max_obj_per_leaf)
+
     def radius_search (self, point, double radius, unsigned int max_nn = 0):
         """
         Search for all neighbors of query point that are within a given radius.
@@ -280,6 +287,7 @@ cdef class OctreePointCloudSearch_PointXYZI(OctreePointCloud_PointXYZI):
         """
         Add points from input point cloud to octree.
         """
+        print("Hello Khanh")
         self.me2.addPointsFromInputCloud()
 
     def is_voxel_occupied_at_point(self, point):
@@ -301,6 +309,7 @@ cdef class OctreePointCloudSearch_PointXYZI(OctreePointCloud_PointXYZI):
         Delete leaf node / voxel at given point.
         """
         self.me2.deleteVoxelAtPoint(to_point2_t(point))
+
 
 cdef class OctreePointCloudSearch_PointXYZRGB(OctreePointCloud_PointXYZRGB):
     """
@@ -324,6 +333,9 @@ cdef class OctreePointCloudSearch_PointXYZRGB(OctreePointCloud_PointXYZRGB):
         del self.me2
         self.me2 = NULL
         self.me = NULL
+
+    def enable_dynamic_depth(self, int max_obj_per_leaf):
+         (<pcloct.OctreePointCloud_PointXYZRGB_t*>self.me).enableDynamicDepth(max_obj_per_leaf)
 
     def radius_search (self, point, double radius, unsigned int max_nn = 0):
         """
@@ -407,6 +419,9 @@ cdef class OctreePointCloudSearch_PointXYZRGBA(OctreePointCloud_PointXYZRGBA):
         self.me2 = NULL
         self.me = NULL
 
+    def enable_dynamic_depth(self, int max_obj_per_leaf):
+         (<pcloct.OctreePointCloud_PointXYZRGBA_t*>self.me).enableDynamicDepth(max_obj_per_leaf)
+
     def radius_search (self, point, double radius, unsigned int max_nn = 0):
         """
         Search for all neighbors of query point that are within a given radius.
@@ -443,6 +458,7 @@ cdef class OctreePointCloudSearch_PointXYZRGBA(OctreePointCloud_PointXYZRGBA):
         """
         Add points from input point cloud to octree.
         """
+        print("Hello Khanh")
         self.me2.addPointsFromInputCloud()
 
     def is_voxel_occupied_at_point(self, point):
