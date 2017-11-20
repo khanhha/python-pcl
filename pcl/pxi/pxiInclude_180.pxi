@@ -20,6 +20,7 @@ include "Octree/OctreePointCloud_180.pxi"
 include "Octree/OctreePointCloud2Buf_180.pxi"
 include "Octree/OctreePointCloudSearch_180.pxi"
 include "Octree/OctreePointCloudChangeDetector_180.pxi"
+include "Octree/OctreePointCloudNormal_180.pxi"
 
 include "Vertices.pxi"
 include "Filters/CropHull_180.pxi"

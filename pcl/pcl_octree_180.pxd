@@ -1257,6 +1257,12 @@ cdef extern from "pcl/octree/octree_pointcloud.h" namespace "pcl::octree":
         void getVoxelBounds (OctreeIteratorBase[OctreeT]& iterator, eig.Vector3f &min_pt, eig.Vector3f &max_pt)
 
 
+        # \brief Enable dynamic octree structure
+        # \note Leaf nodes are kept as close to the root as possible and are only expanded if the number of DataT objects within a leaf node exceeds a fixed limit.
+        # \return maxObjsPerLeaf: maximum number of DataT objects per leaf
+        # inline void enableDynamicDepth ( size_t maxObjsPerLeaf )
+        void enableDynamicDepth ( size_t maxObjsPerLeaf )
+
 ctypedef OctreePointCloud[cpp.PointXYZ, OctreeContainerPointIndices_t, OctreeContainerEmpty_t, OctreeBase_OctreeContainerPointIndices_t] OctreePointCloud_t
 ctypedef OctreePointCloud[cpp.PointXYZI, OctreeContainerPointIndices_t, OctreeContainerEmpty_t, OctreeBase_OctreeContainerPointIndices_t] OctreePointCloud_PointXYZI_t
 ctypedef OctreePointCloud[cpp.PointXYZRGB, OctreeContainerPointIndices_t, OctreeContainerEmpty_t, OctreeBase_OctreeContainerPointIndices_t] OctreePointCloud_PointXYZRGB_t
@@ -1321,6 +1327,7 @@ ctypedef shared_ptr[OctreePointCloudDensity[cpp.PointXYZI]] OctreePointCloudDens
 ctypedef shared_ptr[OctreePointCloudDensity[cpp.PointXYZRGB]] OctreePointCloudDensity_PointXYZRGB_Ptr_t
 ctypedef shared_ptr[OctreePointCloudDensity[cpp.PointXYZRGBA]] OctreePointCloudDensity_PointXYZRGBA_Ptr_t
 ###
+
 
 # octree_pointcloud_occupancy.h
 ###
@@ -1438,6 +1445,21 @@ ctypedef shared_ptr[OctreePointCloudSearch[cpp.PointXYZRGB]] OctreePointCloudSea
 ctypedef shared_ptr[OctreePointCloudSearch[cpp.PointXYZRGBA]] OctreePointCloudSearch_PointXYZRGBA_Ptr_t
 ###
 
+
+# octree_pointcloud_normal.h
+# namespace pcl
+# namespace octree
+# template<typename PointT, typename LeafContainerT = OctreePointCloudDensityContainer, typename BranchContainerT = OctreeContainerEmpty >
+# class OctreePointCloudNormal: public OctreePointCloud<PointT, LeafContainerT, BranchContainerT>
+cdef extern from "pcl/octree/octree_pointcloud_normal.h" namespace "pcl::octree":
+    cdef cppclass OctreePointCloudNormal[PointT, NormalT](OctreePointCloudSearch[PointT]):
+        OctreePointCloudNormal (const double resolution_arg)
+
+        void setInputNormalCloud (cpp.PointCloud_Normal_Ptr_t)
+
+ctypedef OctreePointCloudNormal[cpp.PointXYZ, cpp.Normal] OctreePointCloudNormal_t
+ctypedef shared_ptr[OctreePointCloudNormal[cpp.PointXYZ, cpp.Normal]] OctreePointCloudNormalPtr_t
+###
 
 # 1.7.2 Add headers
 # octree2buf_base.h
