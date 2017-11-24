@@ -42,8 +42,10 @@ normal.from_array(normals);
 
 octreeNormal= pcl.OctreePointCloudNormal(0.2)
 octreeNormal.set_input_cloud(cloud)
+octreeNormal.enable_dynamic_depth(300)
 octreeNormal.set_leaf_normal_threshold(0.9)
 octreeNormal.set_input_normal_cloud(normal)
+octreeNormal.add_points_from_input_cloud()
 
 # pcl::octree::OctreePointCloudSearch<pcl::PointXYZ> octree (resolution);
 # octree.setInputCloud (cloud);
