@@ -1456,6 +1456,7 @@ cdef extern from "pcl/octree/octree_pointcloud_normal.h" namespace "pcl::octree"
         OctreePointCloudNormal (const double resolution_arg)
 
         void setInputNormalCloud (cpp.PointCloud_Normal_Ptr_t)
+        void setNormalThreshold(float value)
 
 ctypedef OctreePointCloudNormal[cpp.PointXYZ, cpp.Normal] OctreePointCloudNormal_t
 ctypedef shared_ptr[OctreePointCloudNormal[cpp.PointXYZ, cpp.Normal]] OctreePointCloudNormalPtr_t
